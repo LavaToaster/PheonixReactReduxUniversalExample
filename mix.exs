@@ -5,7 +5,7 @@ defmodule Eqtv.Mixfile do
     [app: :eqtv,
      version: "0.0.1",
      elixir: "~> 1.0",
-     elixirc_paths: ["lib", "api"],
+     elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,

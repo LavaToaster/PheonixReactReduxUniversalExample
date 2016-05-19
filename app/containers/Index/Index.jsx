@@ -1,39 +1,46 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { sendMessage, subscribeMessage } from '../../redux/message';
 
 class Index extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: ''
-    };
+  componentWillMount() {
+    const { dispatch } = this.props;
+
+    dispatch(subscribeMessage());
   }
 
-  handleOnChange(event) {
-    if (! event.target.value) {
-      return;
-    }
+  handleFormSubmit(event) {
+    event.preventDefault();
 
-    this.setState({
-      name: event.target.value
-    })
+    const { dispatch } = this.props;
+
+    dispatch(sendMessage(this.refs.message.value));
+
+    this.refs.message.value = '';
   }
 
   render() {
-    const { name } = this.state;
-    const names = [
-      "Adam",
-      "Ross",
-      "Peter",
-      "Nathan",
-      "Joe"
-    ];
+    const { messages } = this.props;
 
-    return <div>
-      <ul>
-        { names.map(name => <li>{name}</li>) }
-      </ul>
-    </div>
+    return (
+      <div>
+        <ul>
+          { messages.map((message, key) => <li key={key}>{message}</li>) }
+        </ul>
+
+        <form onSubmit={::this.handleFormSubmit}>
+          <input type="text" ref="message" />
+          <button>Send Message</button>
+        </form>
+      </div>
+    );
   }
 }
 
-export default Index;
+function mapStateToProps(state) {
+  return {
+    messages: state.messages
+  };
+}
+
+export default connect(mapStateToProps)(Index);

@@ -67,7 +67,10 @@ module.exports = {
     extensions: ['', '.js', '.jsx', '.scss'],
     modulesDirectories: [
       "app", "node_modules"
-    ]
+    ],
+    alias: {
+      phoenix: path.join(__dirname, '..', 'deps', 'phoenix', 'web', 'static', 'js', 'phoenix.js')
+    }
   },
   plugins: [
     // We need to ignore VertX which is a dependency required by the es6-promise module

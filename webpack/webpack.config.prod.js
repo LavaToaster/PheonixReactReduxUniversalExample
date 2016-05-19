@@ -91,7 +91,10 @@ module.exports = [
       extensions: ['', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         "app", "node_modules"
-      ]
+      ],
+      alias: {
+        phoenix: path.join(__dirname, '..', 'deps', 'phoenix', 'web', 'static', 'js', 'phoenix.js')
+      }
     },
     plugins: [
       // extract inline css from modules into separate files
@@ -136,7 +139,10 @@ module.exports = [
       extensions: ['', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         "app", "node_modules"
-      ]
+      ],
+      alias: {
+        phoenix: path.join(__dirname, '..', 'deps', 'phoenix', 'web', 'static', 'js', 'phoenix.js')
+      }
     },
     plugins: [
       new webpack.IgnorePlugin(/vertx/),

@@ -2,7 +2,7 @@ defmodule Eqtv.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Eqtv.RoomChannel
+  channel "messages:*", Eqtv.MessagesChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
