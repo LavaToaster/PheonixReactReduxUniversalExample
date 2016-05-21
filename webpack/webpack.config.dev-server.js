@@ -79,7 +79,8 @@ module.exports = {
     new ExtractTextPlugin("styles/main.css"),
     new webpack.DefinePlugin({
       __DEVCLIENT__: false,
-      __DEVSERVER__: true
+      __DEVSERVER__: true,
+      __ISSERVER__: true
     }),
     new ManifestPlugin({
       fileName: 'build-manifest.json'

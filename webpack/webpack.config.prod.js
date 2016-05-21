@@ -106,7 +106,8 @@ module.exports = [
       }),
       new webpack.DefinePlugin({
         __DEVCLIENT__: false,
-        __DEVSERVER__: false
+        __DEVSERVER__: false,
+        __ISSERVER__: false
       }),
       new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' }),
       new StatsPlugin('stats-client.json', {
@@ -158,7 +159,8 @@ module.exports = [
       }),
       new webpack.DefinePlugin({
         __DEVCLIENT__: false,
-        __DEVSERVER__: false
+        __DEVSERVER__: false,
+        __ISSERVER__: true
       }),
       new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' }),
       new ManifestPlugin({

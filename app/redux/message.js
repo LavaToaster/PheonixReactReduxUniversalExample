@@ -26,7 +26,6 @@ function addMessage(message) {
 }
 
 export function sendMessage(message) {
-  // TODO ADD WEBSOCKETS CODE
   return (dispatch, getState) => {
     let payload = {
       text: message
@@ -45,10 +44,14 @@ export function sendMessage(message) {
 
 export function subscribeMessage() {
   return dispatch => {
+    if (! channel) {
+      // If there is no channel, this should be an indicator this is running in node and it shouldn't attempt to
+      // communicate with the websockets connection, but there may be actual connection issues that leave this
+      // variable null.
+      // TODO: Investigate client connectivity issues
+      return;
+    }
+
     channel.on('new:message', message => dispatch(addMessage(message.text)));
   }
-}
-
-export function recieveMessage(message) {
-
 }

@@ -1,6 +1,10 @@
 import { Socket } from 'phoenix';
 
 export function configureChannel() {
+  if (__ISSERVER__) {
+    return null;
+  }
+  
   let socket = new Socket('ws://localhost:4000/socket');
   socket.connect();
 
